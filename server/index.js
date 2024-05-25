@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const connectDB = require("./config/dbConnection");
 require("dotenv").config();
 
 const app = express();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 const port = process.env.PORT || 5000;
 
 // listen
-app.listen(port, () => {
+app.listen(port, async () => {
+  await connectDB();
   console.log(`Server conntected to port ${port}`);
 });
